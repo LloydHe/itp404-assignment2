@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HW2</title>
+</head>
+
+<body>
+    <p> Search for a subreddit </p>
+    <input type="text" id="reddit" />
+    <button id="blank">View</button>
+    <div id="search"></div>
+    
+    
+    <script src="jquery-3.2.1.js"></script>
+<script>
+    
+        $('button').on('click', function() {
+             
+            $('#search').text('In progress'); $('#search').text(' '); 
+            
+            //get the url
+            $.getJSON('https:www.reddit.com/r/' + document.querySelector('#reddit').value + '.json').then(function(results){
+
+                
+                //use the loop to print out the information
+                i = 0;
+                while(i < results.data.children.length) {
+                   $('#search').append(results.data.children[i].data.title+'<br/>');
+                   $('#search').append(results.data.children[i].data.url+'<br/>' );
+                   $('#search').append(results.data.children[i].data.score + ' scores'+ '<br/>');
+                    
+                    //if the comments are greater than 0, print out the number of the comments
+                    num = results.data.children[i].data.num_comments;
+                    if(num > 0) {
+                        $('#search').append(num + " comments" + '<br/>');
+                    } 
+                    
+                    //otherwise print out 0
+                    else {
+                        $('#search').append("No comments!"+ '<br/>');
+                    } 
+                    
+                   i++
+                    
+                } 
+                //error message
+            },function(error) { 
+                $('#search').append('Error!' + '<br/>');
+            });
+        });
+    </script>
+</body>
+</html>
