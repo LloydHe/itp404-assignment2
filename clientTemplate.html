@@ -11,7 +11,7 @@
     <button id="blank">View</button>
     <div id="search"></div>
     
-    
+    <script src="jquery-3.2.1.js"></script>
     
 <script>
     
@@ -20,7 +20,7 @@
             $('#search').text('In progress'); $('#search').text(' '); 
             
             //get the url
-            $.getJSON('https:www.reddit.com/r/' + document.querySelector('#reddit').value + '.json').then(function(results){
+            $.getJSON('https://www.reddit.com/r/' + document.querySelector('#reddit').value + '.json').then(function(results){
 
                 
                 //use the loop to print out the information
@@ -50,7 +50,7 @@
             });
         });
     
-    <script src="jquery-3.2.1.js"></script>
+    
     </script>
 </body>
 </html>
